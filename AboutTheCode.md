@@ -58,6 +58,21 @@ We leverage the MobileNet V2 model from TensorFlow Hub as a feature extractor.
 2. Preprocess an input image for prediction.
 3. Use the model to predict whether the image contains a dog or a cat.
 
+## About MobileNet V2
+
+MobileNetV2 is a deep learning architecture designed for efficient and lightweight image classification and feature extraction tasks, particularly suited for mobile and embedded devices with limited computational resources. It is a successor to the original MobileNetV1 architecture and is known for its high efficiency and accuracy trade-off.
+
+Key features of MobileNetV2 include:
+
+1. **Depthwise Separable Convolutions:** MobileNetV2 employs depthwise separable convolutions, which decompose the standard convolution operation into two separate layers: depthwise convolution and pointwise convolution. This significantly reduces computational complexity while maintaining good accuracy.
+
+2. **Inverted Residuals:** MobileNetV2 introduces inverted residuals, which involve using a bottleneck architecture with a narrow pointwise convolution followed by a wider pointwise convolution. This reduces the number of parameters and computations while enhancing the model's ability to learn.
+
+3. **Linear Bottlenecks:** The bottlenecks in MobileNetV2 use linear activation functions instead of non-linear activation functions like ReLU. This helps in retaining more information in the network and improving the model's efficiency.
+
+4. **Multiple Scales:** MobileNetV2 has built-in support for multiple input sizes, allowing the model to adapt to various image resolutions without retraining. This is particularly useful for applications where images of different sizes need to be processed.
+
+5. **Efficient Network Design:** MobileNetV2 focuses on striking a balance between model size, speed, and accuracy. This design philosophy makes it well-suited for real-time or resource-constrained scenarios.
 
 ## Lets understand the Code
 
