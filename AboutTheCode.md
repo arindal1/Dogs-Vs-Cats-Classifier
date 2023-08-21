@@ -211,20 +211,21 @@ with open(api_key_path, "w") as api_key_file:
 # Set appropriate permissions
 os.chmod(api_key_path, 0o600)
 ```
-
-
-
+<br>
+<br>
 
 ```python
 !ls
 ```
-This command is not that important, it just print the current directory and works for Unix.
+This command is not really important, it just prints the current directory and works for Unix.
+
+For Jupyter, replace `!ls` with:
 
 ```python
 !dir
 ```
-
-
+<br>
+<br>
 
 You might encounter an error in the **Predictive Model** if you are using Jupyer Notebook.
 
