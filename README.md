@@ -92,6 +92,7 @@ We are using a Dogs vs Cats competition dataset from [Kaggle](https://www.kaggle
 ### Note:
 
 The dataset present in this repository, at [/dataset](/dataset) is just for demonstrative purposes. It has just a few images to serve as an example of how the dataset looks like, and the directory structure. The original data is really big, so it couldn't be included in this repo, use the original dataset using it API call:
+
 `kaggle competitions download -c dogs-vs-cats`
 
 You can also download it from [Resources](#resources-and-external-links) and use it manually.
@@ -99,6 +100,18 @@ You can also download it from [Resources](#resources-and-external-links) and use
 ## About the Code
 
 To unberstand more about the code refer to [AboutTheCode](AboutTheCode.md)
+
+## Accuracy
+
+The accuracy of a machine learning model, including the MobileNetV2-based model we're working with, depends on various factors such as the quality and quantity of the training data, the model's architecture, the hyperparameters used during training, and the complexity of the problem being solved (in this case, classifying cats and dogs).
+
+![accuracy](resources/s8.png)
+
+## Results
+
+The results of the final **Predictive Model** can be found in [OUTPUT](resources/OUTPUT.md).
+
+To test this model, you can use images from the `train` folder, or the `test` folder, or alternatively you can **download** images of cats and dogs from the *Internet* and use them to test the model's prediction.
 
 ## Roadmap
 
