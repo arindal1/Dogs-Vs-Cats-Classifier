@@ -186,7 +186,7 @@ Here are few alternatives of code snippets for Jupyter Notebook environment:
 
 
 
-```collab
+```unix
 !mkdir -p ~/.kaggle
 !cp kaggle.json ~/.kaggle/
 !chmod 600 ~/.kaggle/kaggle.json
@@ -195,7 +195,7 @@ This code snippet works best for Unix and Google Collab.
 
 For Notebook and Windows, use:
 
-```jupyter
+```python
 import os
 
 # Create the .kaggle directory
@@ -213,12 +213,12 @@ os.chmod(api_key_path, 0o600)
 ```
 
 
-```collab
+```unix
 !ls
 ```
 This command is not that important, it just print the current directory and works for Unix.
 
-```jupyter
+```python
 !dir
 ```
 
