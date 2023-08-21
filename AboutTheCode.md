@@ -184,13 +184,16 @@ The user provides the path to an image for prediction. The input image is loaded
 Please note that the above code is most suitable for a Google collab environment. Things like **'cv2_imshow'** may not work in other environments.
 Here are few alternatives of code snippets for Jupyter Notebook environment:
 
+
+
 ```collab
 !mkdir -p ~/.kaggle
 !cp kaggle.json ~/.kaggle/
 !chmod 600 ~/.kaggle/kaggle.json
 ```
-This code snippet works best for Unix and Google collab.
-For Notebook in windows use:
+This code snippet works best for Unix and Google Collab.
+
+For Notebook and Windows, use:
 
 ```jupyter
 import os
