@@ -8,7 +8,6 @@ This repository contains a step-by-step guide and code for building an image cla
 - [Project Overview](#project-overview)
 - [Project Structure](#project-structure)
 - [Getting Started](#getting-started)
-  - [Installation](#installation)
 - [Dataset](#dataset-used)
 - [About the Code](#about-the-code)
 - [Roadmap](#roadmap)
@@ -27,10 +26,17 @@ Describe the structure of your project directory here, including the main files,
 ```
 dogs-vs-cats-classification/
 │
-├── data/
+├── dataset/
 │   ├── train/
 │   ├── test/
+|   ├── image resized/
 │
+├── resources
+|   ├── OUTPUT.md
+|   ├── screenshot1
+|   ├── screenshot2
+|   ├── ...
+|
 ├── src/
 |   ├── main.py
 │   ├── preprocessing.py
@@ -39,9 +45,16 @@ dogs-vs-cats-classification/
 │   ├── evaluate.py
 │   ├── predict.py
 │
-├── requirements.txt
 ├── AboutTheCode.md
+├── GoogleCollab Example.pdf
+├── Notebook Example.pdf
+|
+├── DogVsCatClassifier.ipynb
+|
 ├── README.md
+├── kaggle.json
+├── requirements.txt
+
 ```
 
 ## Getting Started
@@ -60,6 +73,10 @@ git clone https://github.com/arindal1/Dogs-Vs-Cats-Classifier.git
 
 ![kaggle api](resources/s7.png)
 
+### Note:
+
+Don't use the Python files from [/src](/src). I started with it but switched to Jupyter Notebook later, so it has *dependency issues*. Stick to **Jupyter Notebook** or **Google Collab**.
+
 ## Dataset Used
 
 We are using a Dogs vs Cats competition dataset from [Kaggle](https://www.kaggle.com/)
@@ -72,9 +89,16 @@ We are using a Dogs vs Cats competition dataset from [Kaggle](https://www.kaggle
 
 [Dataset Link](https://www.kaggle.com/competitions/dogs-vs-cats)
 
+### Note:
+
+The dataset present in this repository, at [/dataset](/dataset) is just for demonstrative purposes. It has just a few images to serve as an example of how the dataset looks like, and the directory structure. The original data is really big, so it couldn't be included in this repo, use the original dataset using it API call:
+`kaggle competitions download -c dogs-vs-cats`
+
+You can also download it from [Resources](#resources-and-external-links) and use it manually.
+
 ## About the Code
 
-To unberstand more about the code refer [AboutTheCode](AboutTheCode.md)
+To unberstand more about the code refer to [AboutTheCode](AboutTheCode.md)
 
 ## Roadmap
 
