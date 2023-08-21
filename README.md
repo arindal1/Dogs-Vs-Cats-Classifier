@@ -58,6 +58,8 @@ git clone https://github.com/arindal1/Dogs-Vs-Cats-Classifier.git
 
 3. Make a Kaggle account, and make a new API token for your profile. Put the downloaded `kaggle.json` file in the main directory.
 
+![kaggle api](resources/s7.png)
+
 ## Dataset Used
 
 We are using a Dogs vs Cats competition dataset from [Kaggle](https://www.kaggle.com/)
