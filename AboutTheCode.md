@@ -179,6 +179,8 @@ input_prediction = model.predict(image_reshaped)
 
 The user provides the path to an image for prediction. The input image is loaded, resized, scaled, and passed through the model for prediction. The predicted label and confidence scores are printed.
 
+## Error Handling
+
 Please note that the above code is most suitable for a Google collab environment. Things like **'cv2_imshow'** may not work in other environments.
 Here are few alternatives of code snippets for Jupyter Notebook environment:
 
