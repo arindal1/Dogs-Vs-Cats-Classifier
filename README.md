@@ -99,7 +99,7 @@ If you have any questions or suggestions related to this project, you can reach 
 ## Resources and External Links
 
 - The Kaggle Dataset used: [Dataset](https://www.kaggle.com/competitions/dogs-vs-cats)
-- MobileNet v2 model: [Model](https://tfhub.dev/google/tf2-preview/mobilenet_v2/feature_vector/4)
+- MobileNet v2: [Model](https://tfhub.dev/google/tf2-preview/mobilenet_v2/feature_vector/4)
 - My Google Collab: [File](https://colab.research.google.com/drive/1eeuVHCfI963x5ehibpIO-x7uY4lw4bRG?usp=sharing)
 
 **Note:** This is a personal project created for educational and demonstrative purposes. I made this project just for fun and learn more about Machine Learning in the process, and record my progress in this field. I also want to help others like me who are interested in Machine Learning projects.
