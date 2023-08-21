@@ -95,7 +95,7 @@ The dataset present in this repository, at [/dataset](/dataset) is just for demo
 
 `kaggle competitions download -c dogs-vs-cats`
 
-You can also download it from [Resources](#resources-and-external-links) and use it manually.
+You can also download it from [External Links](#resources-and-external-links) given below and use it manually.
 
 ## About the Code
 
