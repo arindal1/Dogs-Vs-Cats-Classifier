@@ -186,7 +186,7 @@ Here are few alternatives of code snippets for Jupyter Notebook environment:
 
 
 
-```unix
+```python
 !mkdir -p ~/.kaggle
 !cp kaggle.json ~/.kaggle/
 !chmod 600 ~/.kaggle/kaggle.json
@@ -213,7 +213,9 @@ os.chmod(api_key_path, 0o600)
 ```
 
 
-```unix
+
+
+```python
 !ls
 ```
 This command is not that important, it just print the current directory and works for Unix.
@@ -222,9 +224,11 @@ This command is not that important, it just print the current directory and work
 !dir
 ```
 
+
+
 You might encounter an error in the **Predictive Model** if you are using Jupyer Notebook.
 
-```collab
+```python
 input_image_path = input('Path of the image to be predicted: ')
 
 input_image = cv2.imread(input_image_path)
@@ -256,7 +260,7 @@ You'll encountered an error because the **cv2_imshow** function is specific to G
 
 Here's how you can modify the code for displaying the input image:
 
-```jupyter
+```python
 input_image_path = input('Path of the image to be predicted: ')
 
 input_image = cv2.imread(input_image_path)
