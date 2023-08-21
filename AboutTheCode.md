@@ -2,7 +2,7 @@
 
 ## What is Transfer Leaning?
 
->> Transfer learning is a machine learning technique where a model trained on one task or dataset is used as a starting point for training a model on a different, but related, task or dataset. Instead of training a model from scratch, transfer learning leverages the knowledge and features learned from the source task or dataset to improve the learning process for the target task.
+> Transfer learning is a machine learning technique where a model trained on one task or dataset is used as a starting point for training a model on a different, but related, task or dataset. Instead of training a model from scratch, transfer learning leverages the knowledge and features learned from the source task or dataset to improve the learning process for the target task.
 >>The general idea behind transfer learning is that the features learned by a model while solving one problem can be beneficial for solving a related problem, even if the two problems are not exactly the same. This approach can be particularly useful when the target dataset is small or lacks sufficient labeled examples, as the pre-trained model can provide a foundation of general knowledge that helps the model adapt and generalize better to the new task.
 
 In transfer learning, there are typically two main stages:
