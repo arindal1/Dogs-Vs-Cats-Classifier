@@ -91,7 +91,7 @@ import os
 kaggle_dir = os.path.expanduser("~/.kaggle")
 os.makedirs(kaggle_dir, exist_ok=True)
 
-api_key_content = '{"username":"arindal","key":"d7cf98c88ef973d7455874f00b9da192"}'
+api_key_content = '{"username":"your_username","key":"your_APIKEY"}'  # replace these values with the values in your kaggle.json
 api_key_path = os.path.join(kaggle_dir, "kaggle.json")
 with open(api_key_path, "w") as api_key_file:
     api_key_file.write(api_key_content)
