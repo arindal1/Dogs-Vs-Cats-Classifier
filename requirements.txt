@@ -1,0 +1,12 @@
+
+- jupyter notebook OR google collab account
+- kaggle account
+- kaggle library
+- kaggle.json	( a json file containing your Kaggle Username and API token )
+- numpy
+- PIL
+- matplotlib
+- sklearn
+- OpenCV
+- tensorflow
+- tensorflow hub
