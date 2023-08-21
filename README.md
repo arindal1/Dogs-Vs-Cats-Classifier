@@ -103,7 +103,7 @@ To test this model, you can use images from the `train` folder, or the `test` fo
 
 ## Roadmap
 
-See the [open issues](https://github.com/arindal1/Dictionary-WebApp/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/arindal1/Dogs-Vs-Cats-Classifier/issues) for a list of proposed features (and known issues).
 
 ## Contributing
 
