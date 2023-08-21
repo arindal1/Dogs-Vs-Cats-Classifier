@@ -9,18 +9,12 @@ This repository contains a step-by-step guide and code for building an image cla
 - [Project Structure](#project-structure)
 - [Getting Started](#getting-started)
   - [Installation](#installation)
-  - [Data Collection](#data-collection)
-  - [Preprocessing](#preprocessing)
-- [Model Building](#model-building)
-  - [Loading Pretrained Model](#loading-pretrained-model)
-  - [Creating the Model](#creating-the-model)
-  - [Model Compilation](#model-compilation)
-  - [Model Training](#model-training)
-- [Model Evaluation](#model-evaluation)
-- [Making Predictions](#making-predictions)
+- [Dataset](#dataset-used)
+- [About the Code](#about-the-code)
+- [Roadmap](#roadmap)
 - [Contributing](#contributing)
-- [Contact Me](#contact-me)
-- [License](#license)
+- [Contact Me](#contact)
+- [Resources](#resources-and-external-links)
 
 ## Project Overview
 
@@ -37,9 +31,8 @@ dogs-vs-cats-classification/
 │   ├── train/
 │   ├── test/
 │
-├── notebooks/
-│
 ├── src/
+|   ├── main.py
 │   ├── preprocessing.py
 │   ├── model.py
 │   ├── train.py
@@ -47,7 +40,7 @@ dogs-vs-cats-classification/
 │   ├── predict.py
 │
 ├── requirements.txt
-├── LICENSE
+├── AboutTheCode.md
 ├── README.md
 ```
 
@@ -63,11 +56,23 @@ git clone https://github.com/arindal1/Dogs-Vs-Cats-Classifier.git
 
 2. Install the required packages using the [requirements.txt](requirements.txt)
 
+3. Make a Kaggle account, and make a new API token for your profile. Put the downloaded `kaggle.json` file in the main directory.
+
+## Dataset Used
+
+We are using a Dogs vs Cats competition dataset from [Kaggle](https://www.kaggle.com/)
+
+![kaggle dataset](resources/s5.png)
+
+### The Asira Dataset
+
+**Asirra** (Animal Species Image Recognition for Restricting Access) is a HIP that works by asking users to identify photographs of cats and dogs. This task is difficult for computers, but studies have shown that people can accomplish it quickly and accurately. 
+
+[Dataset Link](https://www.kaggle.com/competitions/dogs-vs-cats)
+
 ## About the Code
 
 To unberstand more about the code refer [AboutTheCode](AboutTheCode.md)
-
-
 
 ## Roadmap
 
@@ -93,7 +98,9 @@ If you have any questions or suggestions related to this project, you can reach 
 
 ## Resources and External Links
 
--
+- The Kaggle Dataset used: [Dataset](https://www.kaggle.com/competitions/dogs-vs-cats)
+- MobileNet v2 model: [Model](https://tfhub.dev/google/tf2-preview/mobilenet_v2/feature_vector/4)
+- My Google Collab: [File](https://colab.research.google.com/drive/1eeuVHCfI963x5ehibpIO-x7uY4lw4bRG?usp=sharing)
 
 **Note:** This is a personal project created for educational and demonstrative purposes. I made this project just for fun and learn more about Machine Learning in the process, and record my progress in this field. I also want to help others like me who are interested in Machine Learning projects.
 
