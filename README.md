@@ -3,18 +3,6 @@
 
 This repository contains a step-by-step guide and code for building an image classification model to differentiate between dogs and cats using TensorFlow and a pre-trained MobileNet model.
 
-## Table of Contents
-
-- [Project Overview](#project-overview)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-- [Dataset](#dataset-used)
-- [About the Code](#about-the-code)
-- [Roadmap](#roadmap)
-- [Contributing](#contributing)
-- [Contact Me](#contact)
-- [Resources](#resources-and-external-links)
-
 ## Project Overview
 
 This project involves building an image classification model to distinguish between images of dogs and cats. The process includes data preprocessing, using a pre-trained model, training the model, evaluating its performance, and making predictions on new images. The project uses TensorFlow and a pre-trained MobileNet model, and the code is structured into modular files for better organization and maintainability.
