@@ -9,8 +9,6 @@ This project involves building an image classification model to distinguish betw
 
 ## Project Structure
 
-Describe the structure of your project directory here, including the main files, folders, and their purposes.
-
 ```
 dogs-vs-cats-classification/
 │
