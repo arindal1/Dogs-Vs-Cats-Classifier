@@ -1,6 +1,4 @@
-Sure! Here's an updated version of the `README.md` file that includes the additional sections you requested:
 
-```markdown
 # Dogs vs Cats Image Classification
 
 This repository contains a step-by-step guide and code for building an image classification model to differentiate between dogs and cats using TensorFlow and a pre-trained MobileNet model.
