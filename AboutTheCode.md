@@ -76,166 +76,208 @@ Key features of MobileNetV2 include:
 
 ## Lets understand the Code
 
+Absolutely, I'll explain each step of the provided code in detail:
 
+1. **Installing Kaggle Library**:
 
 ```python
-# Install required packages
 !pip install kaggle
 ```
-This installs the `kaggle` package, which is used for interacting with the Kaggle platform.
+
+This command installs the Kaggle library, allowing you to interact with the Kaggle platform programmatically.
+
+2. **Creating Kaggle API Key**:
+
+The code sets up your Kaggle API key by writing your Kaggle username and API key to a `kaggle.json` file in the `.kaggle` directory. This step is essential for authenticating and downloading datasets from Kaggle.
+
+3. **Downloading Competition Dataset**:
 
 ```python
-# Create the .kaggle directory and copy API key
-import os
-
-kaggle_dir = os.path.expanduser("~/.kaggle")
-os.makedirs(kaggle_dir, exist_ok=True)
-
-api_key_content = '{"username":"your_username","key":"your_APIKEY"}'  # replace these values with the values in your kaggle.json
-api_key_path = os.path.join(kaggle_dir, "kaggle.json")
-with open(api_key_path, "w") as api_key_file:
-    api_key_file.write(api_key_content)
-
-os.chmod(api_key_path, 0o600)
-```
-This code sets up Kaggle API authentication by creating a `.kaggle` directory in your home folder and copying the Kaggle API key content into a `kaggle.json` file. It then sets appropriate permissions for the file.
-
-```python
-# Download dataset from Kaggle competition
 !kaggle competitions download -c dogs-vs-cats
 ```
-This command uses the Kaggle API to download the dataset for the "Dogs vs. Cats" competition.
+
+This command uses the Kaggle API to download the dataset for the "Dogs vs. Cats" competition. The dataset is downloaded as a zip file.
+
+4. **Extracting Dataset**:
 
 ```python
-# Extract the downloaded datasets
 from zipfile import ZipFile
 
 dataset = '/content/dogs-vs-cats.zip'
 
 with ZipFile(dataset, 'r') as zip:
-    zip.extractall()
-    print('The dataset is extracted')
+  zip.extractall()
+  print('The dataset is extracted')
 ```
-This code extracts the downloaded dataset archive.
+
+This code block extracts the downloaded zip file containing the competition dataset. It's similar to unzipping the contents of the file.
+
+5. **Preparing Training Data**:
 
 ```python
-# Extract the training images
-dataset = '/content/train.zip'
-
-with ZipFile(dataset, 'r') as zip:
-    zip.extractall()
-    print('The dataset is extracted')
+original_folder = '/content/train/'
+resized_folder = '/content/image_resized/'
+# ... (further code for resizing images and preparing labels)
 ```
-This code extracts the training images from another archive.
+
+These lines of code handle preparing the training data. Images are resized to a consistent size (224x224) and converted to RGB format. Labels are assigned based on the filenames.
+
+6. **Loading and Preprocessing Images**:
 
 ```python
-# Count the number of images in the 'train' folder
-import os
-
-path, dirs, files = next(os.walk('/content/train'))
-file_count = len(files)
-print('Number of images: ', file_count)
-```
-This code uses the `os.walk()` function to count the number of images in the 'train' folder and prints the count.
-
-```python
-# Display a few file names from the 'train' folder
-file_names = os.listdir('/content/train/')
-print(file_names)
-```
-This code lists and prints the names of a few files in the 'train' folder.
-
-```python
-# Preprocess the image data
-import numpy as np
-from PIL import Image
-import matplotlib.pyplot as plt 
-import matplotlib.image as mpimg
-from sklearn.model_selection import train_test_split
-import cv2
-
-# Display a dog image
-img = mpimg.imread('/content/train/dog.8298.jpg')
-imgplt = plt.imshow(img)
-plt.show()
-
-# Display a cat image
-img = mpimg.imread('/content/train/cat.4352.jpg')
-imgplt = plt.imshow(img)
-plt.show()
-```
-This section involves image preprocessing steps, including displaying sample images using `matplotlib` and `PIL`.
-
-```python
-# Create lists of file names and labels
-file_names = os.listdir('/content/train/')
-labels = []
-
-for i in range(2000):
-    file_name = file_names[i]
-    label = file_name[0:3]
-
-    if label == 'dog':
-        labels.append(1)
-    else:
-        labels.append(0)
-
-print(filenames[0:5])
-print(len(filenames))
-print(labels[0:5])
-print(len(labels))
-```
-This section prepares a list of file names and corresponding labels. It extracts the labels from the file names by checking if they start with 'dog' or 'cat'.
-
-```python
-# Count the number of dog and cat images
-values, counts = np.unique(labels, return_counts=True)
-print(values)
-print(counts)
-```
-This code counts the number of dog and cat images among the first 2000 images.
-
-```python
-# Load and preprocess images using OpenCV
-import cv2
-import glob
-
-image_directory = '/content/image resized/'
+image_directory = '/content/image_resized/'
 image_extension = ['png', 'jpg']
 
 files = []
-
 [files.extend(glob.glob(image_directory + '*.' + e)) for e in image_extension]
 
 dog_cat_images = np.asarray([cv2.imread(file) for file in files])
-
-print(dog_cat_images.shape)
 ```
-This code uses OpenCV and glob to load and preprocess images by reading them as NumPy arrays. The images are loaded into a NumPy array called `dog_cat_images`.
+
+This part of the code loads and preprocesses the resized images. It creates a list of image files, then uses OpenCV (`cv2`) to read and store these images as a NumPy array (`dog_cat_images`).
+
+7. **Splitting Data and Scaling**:
 
 ```python
-# Split the data into training and testing sets
-X = dog_cat_images
-Y = np.asarray(labels)
-
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=2)
-
-print(X.shape, X_train.shape, X_test.shape)
-```
-This code splits the image data and labels into training and testing sets using the `train_test_split` function from `sklearn`. It also prints the shapes of the arrays.
-
-```python
-# Scale the image data
+# ...
 X_train_scaled = X_train / 255
 X_test_scaled = X_test / 255
 ```
-This code scales the image data to values between 0 and 1.
+
+The data is split into training and testing sets, and the pixel values are scaled to the range of [0, 1] by dividing them by 255.
+
+8. **Creating and Training the Model**:
 
 ```python
-# Import TensorFlow and TensorFlow Hub
-import tensorflow as tf
-import tensorflow_hub as hub
+# ...
+mobilenet_model = 'https://tfhub.dev/google/tf2-preview/mobilenet_v2/feature_vector/4'
+# ...
+model.fit(X_train_scaled, Y_train, epochs=5)
+```
 
-# Load the MobileNet model from TensorFlow Hub
-mobilenet_model = '
+A pre-trained MobileNetV2 model is loaded using TensorFlow Hub. The model is compiled and trained using the scaled training data.
 
+9. **Evaluating the Model**:
+
+```python
+score, acc = model.evaluate(X_test_scaled, Y_test)
+print('Test Loss =', score)
+print('Test Accuracy =', acc)
+```
+
+The model's performance is evaluated on the test set, and the test loss and accuracy are printed.
+
+10. **Image Prediction**:
+
+```python
+input_image_path = input('Path of the image to be predicted: ')
+# ...
+input_prediction = model.predict(image_reshaped)
+# ...
+```
+
+The user provides the path to an image for prediction. The input image is loaded, resized, scaled, and passed through the model for prediction. The predicted label and confidence scores are printed.
+
+Please note that the above code is most suitable for a Google collab environment. Things like **'cv2_imshow'** may not work in other environments.
+Here are few alternatives of code snippets for Jupyter Notebook environment:
+
+```collab
+!mkdir -p ~/.kaggle
+!cp kaggle.json ~/.kaggle/
+!chmod 600 ~/.kaggle/kaggle.json
+```
+This code snippet works best for Unix and Google collab.
+For Notebook in windows use:
+
+```jupyter
+import os
+
+# Create the .kaggle directory
+kaggle_dir = os.path.expanduser("~/.kaggle")
+os.makedirs(kaggle_dir, exist_ok=True)
+
+# Copy the kaggle.json file to the .kaggle directory
+api_key_content = '{"username":"you_username","key":"your_APIKEY"}'  # Replace with your actual API key from kaggle.json
+api_key_path = os.path.join(kaggle_dir, "kaggle.json")
+with open(api_key_path, "w") as api_key_file:
+    api_key_file.write(api_key_content)
+
+# Set appropriate permissions
+os.chmod(api_key_path, 0o600)
+```
+
+
+```collab
+!ls
+```
+This command is not that important, it just print the current directory and works for Unix.
+
+```jupyter
+!dir
+```
+
+You might encounter an error in the **Predictive Model** if you are using Jupyer Notebook.
+
+```collab
+input_image_path = input('Path of the image to be predicted: ')
+
+input_image = cv2.imread(input_image_path)
+
+cv2_imshow(input_image)
+
+input_image_resize = cv2.resize(input_image, (224,224))
+
+input_image_scaled = input_image_resize/255
+
+image_reshaped = np.reshape(input_image_scaled, [1,224,224,3])
+
+input_prediction = model.predict(image_reshaped)
+
+print(input_prediction)
+
+input_pred_label = np.argmax(input_prediction)
+
+print(input_pred_label)
+
+if input_pred_label == 0:
+  print('The image if of a Cat')
+
+else:
+  print('The image is of a Dog')
+```
+
+You'll encountered an error because the **cv2_imshow** function is specific to Google Collab environment, and it's not available in regular Python environments. To display images in a regular Python environment, you can use matplotlib.pyplot.imshow instead.
+
+Here's how you can modify the code for displaying the input image:
+
+```jupyter
+input_image_path = input('Path of the image to be predicted: ')
+
+input_image = cv2.imread(input_image_path)
+
+# cv2_imshow(input_image)
+# cv2_imshow is specific to Google Collab environment
+
+plt.imshow(cv2.cvtColor(input_image, cv2.COLOR_BGR2RGB)) # we display the image using matplotlib function
+
+input_image_resize = cv2.resize(input_image, (224,224))
+
+input_image_scaled = input_image_resize/255
+
+image_reshaped = np.reshape(input_image_scaled, [1,224,224,3])
+
+input_prediction = model.predict(image_reshaped)
+
+print(input_prediction)
+
+input_pred_label = np.argmax(input_prediction)
+
+print(input_pred_label)
+
+if input_pred_label == 0:
+  print('The image if of a Cat')
+
+else:
+  print('The image is of a Dog')
+```
