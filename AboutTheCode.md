@@ -76,7 +76,7 @@ Key features of MobileNetV2 include:
 
 ## Lets understand the Code
 
-Certainly! The code you've provided is quite extensive and involves several steps for building an image classification model using TensorFlow and a pre-trained MobileNet model. I'll explain each section in detail:
+
 
 ```python
 # Install required packages
