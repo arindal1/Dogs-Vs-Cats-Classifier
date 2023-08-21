@@ -91,7 +91,7 @@ We are using a Dogs vs Cats competition dataset from [Kaggle](https://www.kaggle
 
 ### Note:
 
-The dataset present in this repository, at [/dataset](/dataset) is just for demonstrative purposes. It has just a few images to serve as an example of how the dataset looks like, and the directory structure. The original data is really big, so it couldn't be included in this repo, use the original dataset using it API call:
+The dataset present in this repository, at [/dataset](/dataset) is just for demonstrative purposes. It has just a few images to serve as an example of how the dataset looks like, and the directory structure. The original data is really big, so it couldn't be included in this repo, use the original dataset using it's API call:
 
 `kaggle competitions download -c dogs-vs-cats`
 
