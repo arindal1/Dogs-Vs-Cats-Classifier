@@ -185,7 +185,7 @@ Please note that the above code is most suitable for a Google collab environment
 Here are few alternatives of code snippets for Jupyter Notebook environment:
 
 
-
+**#1 :**
 ```python
 !mkdir -p ~/.kaggle
 !cp kaggle.json ~/.kaggle/
@@ -214,6 +214,8 @@ os.chmod(api_key_path, 0o600)
 <br>
 <br>
 
+**#2 :**
+
 ```python
 !ls
 ```
@@ -226,6 +228,8 @@ For Jupyter, replace `!ls` with:
 ```
 <br>
 <br>
+
+**#3 :**
 
 You might encounter an error in the **Predictive Model** if you are using Jupyer Notebook.
 
