@@ -1,0 +1,229 @@
+!pip install Kaggle
+
+# !mkdir -p ~/.kaggle
+# !cp kaggle.json ~/.kaggle/
+# !chmod 600 ~/.kaggle/kaggle.json
+
+import os
+
+# Create the .kaggle directory
+kaggle_dir = os.path.expanduser("~/.kaggle")
+os.makedirs(kaggle_dir, exist_ok=True)
+
+# Copy the kaggle.json file to the .kaggle directory
+api_key_content = '{"username":"you_username","key":"your_APIKEY"}'  # Replace with your actual API key from kaggle.json
+api_key_path = os.path.join(kaggle_dir, "kaggle.json")
+with open(api_key_path, "w") as api_key_file:
+    api_key_file.write(api_key_content)
+
+# Set appropriate permissions
+os.chmod(api_key_path, 0o600)
+
+!kaggle competitions download -c dogs-vs-cats
+!dir
+
+from zipfile import ZipFile
+
+dataset = 'E:\Source Codes\AIML\CatVsDog Classifier/dogs-vs-cats.zip'
+
+with ZipFile(dataset, 'r') as zip:
+  zip.extractall()
+  print('The dataset is extracted')
+
+from zipfile import ZipFile
+
+dataset = 'E:\Source Codes\AIML\CatVsDog Classifier/train.zip'
+
+with ZipFile(dataset, 'r') as zip:
+  zip.extractall()
+  print('The dataset is extracted')
+
+import os
+path, dirs, files = next(os.walk('E:\Source Codes\AIML\CatVsDog Classifier/train'))
+file_count = len(files)
+print('Number of images: ', file_count)
+
+file_names = os.listdir('E:\Source Codes\AIML\CatVsDog Classifier/train/')
+print(file_names)
+
+import numpy as np
+from PIL import Image
+import matplotlib.pyplot as plt 
+import matplotlib.image as mpimg
+from sklearn.model_selection import train_test_split
+import cv2
+
+# DOG IMAGE
+img = mpimg.imread('E:\Source Codes\AIML\CatVsDog Classifier/train/dog.342.jpg')
+imgplt = plt.imshow(img)
+plt.show()
+
+# CAT IMAGE
+img = mpimg.imread('E:\Source Codes\AIML\CatVsDog Classifier/train/cat.658.jpg')
+imgplt = plt.imshow(img)
+plt.show()
+
+file_names = os.listdir('E:\Source Codes\AIML\CatVsDog Classifier/train/')
+
+for i in range(5):
+
+  name = file_names[i] 
+  print(name[0:3])
+
+file_names = os.listdir('E:\Source Codes\AIML\CatVsDog Classifier/train/')
+
+dog_count = 0
+cat_count = 0
+
+for img_file in file_names:
+
+  name = img_file[0:3]
+
+  if name == 'dog':
+    dog_count += 1
+
+  else:
+    cat_count += 1
+
+print('Number of dog images =', dog_count)
+print('Number of cat images =', cat_count)
+
+os.mkdir('E:\Source Codes\AIML\CatVsDog Classifier/image resized')
+
+original_folder = 'E:\Source Codes\AIML\CatVsDog Classifier/train/'
+resized_folder = 'E:\Source Codes\AIML\CatVsDog Classifier/image resized/'
+
+for i in range(2000):
+
+  filename = os.listdir(original_folder)[i]
+  img_path = original_folder+filename
+
+  img = Image.open(img_path)
+  img = img.resize((224, 224))
+  img = img.convert('RGB')
+
+  newImgPath = resized_folder+filename
+  img.save(newImgPath)
+
+# RESIZED DOG IMAGE
+img = mpimg.imread('E:\Source Codes\AIML\CatVsDog Classifier/image resized/dog.342.jpg')
+imgplt = plt.imshow(img)
+plt.show()
+
+# RESIZED CAT IMAGE
+img = mpimg.imread('E:\Source Codes\AIML\CatVsDog Classifier/image resized/cat.658.jpg')
+imgplt = plt.imshow(img)
+plt.show()
+
+filenames = os.listdir('E:\Source Codes\AIML\CatVsDog Classifier/image resized/')
+
+
+labels = []
+
+for i in range(2000):
+
+  file_name = filenames[i]
+  label = file_name[0:3]
+
+  if label == 'dog':
+    labels.append(1)
+
+  else:
+    labels.append(0)
+
+print(filenames[0:5])
+print(len(filenames))
+
+print(labels[0:5])
+print(len(labels))
+
+values, counts = np.unique(labels, return_counts=True)
+print(values)
+print(counts)
+
+import cv2
+import glob
+
+image_directory = 'E:\Source Codes\AIML\CatVsDog Classifier/image resized/'
+image_extension = ['png', 'jpg']
+
+files = []
+
+[files.extend(glob.glob(image_directory + '*.' + e)) for e in image_extension]
+
+dog_cat_images = np.asarray([cv2.imread(file) for file in files])
+
+print(dog_cat_images)
+
+type(dog_cat_images)
+
+print(dog_cat_images.shape)
+
+X = dog_cat_images
+Y = np.asarray(labels)
+
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=2)
+
+print(X.shape, X_train.shape, X_test.shape)
+
+X_train_scaled = X_train/255
+
+X_test_scaled = X_test/255
+
+print(X_train_scaled)
+
+pip install tensorflow
+pip install tensorflow_hub
+
+import tensorflow as tf
+import tensorflow_hub as hub
+
+mobilenet_model = 'https://tfhub.dev/google/tf2-preview/mobilenet_v2/feature_vector/4'
+
+pretrained_model = hub.KerasLayer(mobilenet_model, input_shape=(224,224,3), trainable=False)
+
+num_of_classes = 2
+
+model = tf.keras.Sequential([
+    
+    pretrained_model,
+    tf.keras.layers.Dense(num_of_classes)
+
+])
+
+model.summary()
+
+model.compile(
+    optimizer = 'adam',
+    loss = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+    metrics = ['acc']
+)
+
+model.fit(X_train_scaled, Y_train, epochs=5)
+
+score, acc = model.evaluate(X_test_scaled, Y_test)
+print('Test Loss =', score)
+print('Test Accuracy =', acc)
+print(acc*100, "%")
+
+input_image_path = input('Path of the image to be predicted: ')
+input_image = cv2.imread(input_image_path)
+
+# cv2_imshow(input_image)
+# cv2_imshow is specific to Google Collab environment
+
+plt.imshow(cv2.cvtColor(input_image, cv2.COLOR_BGR2RGB))
+
+input_image_resize = cv2.resize(input_image, (224,224))
+input_image_scaled = input_image_resize/255
+image_reshaped = np.reshape(input_image_scaled, [1,224,224,3])
+input_prediction = model.predict(image_reshaped)
+
+print(input_prediction)
+input_pred_label = np.argmax(input_prediction)
+print(input_pred_label)
+
+if input_pred_label == 0:
+  print('The image if of a Cat')
+else:
+  print('The image is of a Dog')
